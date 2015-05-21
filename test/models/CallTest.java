@@ -8,7 +8,7 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.core.Is.is;
 
 public class CallTest extends UnitTest {
-    private static final String TEST_ID = "id";
+    private static final String TEST_CID = "cid";
     private static final CallStatus TEST_STATUS = CallStatus.SUCCESS;
     private static final String TEST_TO = "123";
     private static final String TEST_FROM = "456";
@@ -18,15 +18,15 @@ public class CallTest extends UnitTest {
     public void setUp() {
         call = new Call();
 
-        call.setId(TEST_ID);
+        call.setCid(TEST_CID);
         call.setStatus(TEST_STATUS);
         call.setTo(TEST_TO);
         call.setFrom(TEST_FROM);
     }
 
     @Test
-    public void shouldReturnId() {
-        assertThat(call.getId(), is(equalTo(TEST_ID)));
+    public void shouldReturnCallId() {
+        assertThat(call.getCid(), is(equalTo(TEST_CID)));
     }
 
     @Test

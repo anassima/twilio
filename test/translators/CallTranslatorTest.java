@@ -12,7 +12,7 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 public class CallTranslatorTest extends UnitTest {
-    private static final String TEST_ID = "id";
+    private static final String TEST_CID = "cid";
     private static final CallStatus TEST_STATUS_SUCCESS = CallStatus.SUCCESS;
     private static final String TEST_STATUS = "completed";
     private Call call;
@@ -21,7 +21,7 @@ public class CallTranslatorTest extends UnitTest {
     public void setUp() {
         com.twilio.sdk.resource.instance.Call twilioCall = mock(com.twilio.sdk.resource.instance.Call.class);
 
-        when(twilioCall.getSid()).thenReturn(TEST_ID);
+        when(twilioCall.getSid()).thenReturn(TEST_CID);
         when(twilioCall.getStatus()).thenReturn(TEST_STATUS);
 
         call = CallTranslator.translate(twilioCall);
@@ -29,7 +29,7 @@ public class CallTranslatorTest extends UnitTest {
 
     @Test
     public void shouldTranslateId() {
-        assertThat(call.getId(), is(equalTo(TEST_ID)));
+        assertThat(call.getCid(), is(equalTo(TEST_CID)));
     }
 
     @Test

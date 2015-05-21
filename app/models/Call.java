@@ -1,17 +1,22 @@
 package models;
 
-public class Call {
-    private String id;
+import play.db.jpa.Model;
+
+import javax.persistence.Entity;
+
+@Entity
+public class Call extends Model {
+    private String cid;
     private CallStatus status;
     private String to;
     private String from;
 
-    public String getId() {
-        return id;
+    public String getCid() {
+        return cid;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setCid(String cid) {
+        this.cid = cid;
     }
 
     public CallStatus getStatus() {

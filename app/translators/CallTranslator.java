@@ -9,7 +9,7 @@ public class CallTranslator {
     public static Call translate(com.twilio.sdk.resource.instance.Call twilioCall) {
         Call call = new Call();
 
-        call.setId(twilioCall.getSid());
+        call.setCid(twilioCall.getSid());
         call.setStatus(convertStatus(twilioCall.getStatus()));
 
         return call;

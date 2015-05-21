@@ -2,6 +2,9 @@ package models;
 
 import org.joda.time.DateTime;
 
+import javax.persistence.Entity;
+
+@Entity
 public class PlacedCall extends Call {
     private DateTime created;
     private DateTime updated;
