@@ -1,24 +1,25 @@
+import factories.CallFactory;
 import models.Call;
-import models.CallStatus;
-import org.junit.*;
-import play.test.*;
-import services.TwilioCallService;
+import org.junit.Before;
+import org.junit.Test;
+import play.test.UnitTest;
+import services.CallService;
 
+import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.core.Is.is;
-import static org.hamcrest.core.IsEqual.equalTo;
-import static org.hamcrest.core.IsNull.notNullValue;
 
 public class TwilioIntegrationTest extends UnitTest {
-    private TwilioCallService callService;
+    private static final String SERVICE_NAME_TWILIO = "twilio";
+    private CallService callService;
 
     @Before
     public void setUp() {
-        callService = new TwilioCallService();
+        callService = CallFactory.getCallService(SERVICE_NAME_TWILIO);
     }
 
     @Test
-    public void shouldPlaceSuccessfulOutgoingCall() {
+    public void shouldReturnCallObject() {
         Call call = callService.makeCall("123");
-        assertThat(call, is(notNullValue()));
+        assertThat(call, is(instanceOf(Call.class)));
     }
 }
