@@ -24,7 +24,11 @@ public class TwilioCallService implements CallService {
     }
 
     public Call makeCall(String number) {
-        Map<String, String> params = buildRequestParams(number);
+        return makeCall(number, null);
+    }
+
+    public Call makeCall(String number, String timeout) {
+        Map<String, String> params = buildRequestParams(number, timeout);
 
         try {
             return makeOutGoingCall(params);
@@ -36,9 +40,15 @@ public class TwilioCallService implements CallService {
         return null;
     }
 
-    private Map<String, String> buildRequestParams(String number) {
-        return TwilioBuilder.buildOutgoingCallParams(
-                number, "+1" + number, "https://www.twilio.com/docs/errors/21205");
+    private Map<String, String> buildRequestParams(String number, String timeout) {
+        if (timeout != null) {
+            return TwilioBuilder.buildOutgoingCallParams(
+                    number, "+1" + number, "https://www.twilio.com/docs/errors/21205", timeout);
+        }
+        else {
+            return TwilioBuilder.buildOutgoingCallParams(
+                    number, "+1" + number, "https://www.twilio.com/docs/errors/21205");
+        }
     }
 
     private Call makeOutGoingCall(Map<String, String> params) throws TwilioRestException {

@@ -18,8 +18,8 @@ public class TwilioIntegrationTest extends UnitTest {
     }
 
     @Test
-    public void shouldReturnCallObject() {
-        Call call = callService.makeCall("123");
+    public void shouldMakeValidCall() {
+        Call call = callService.makeCall("9173799794");
         assertThat(call, is(instanceOf(Call.class)));
     }
 }

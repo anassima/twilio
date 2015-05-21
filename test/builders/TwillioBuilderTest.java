@@ -15,6 +15,8 @@ public class TwillioBuilderTest extends UnitTest {
     private static final String TEST_URL = "url";
     private static final String TEST_METHOD = "GET";
     private static final String TEST_RECORD = "false";
+    private static final String TEST_TIMEOUT = "2";
+    private static final String TEST_TIMEOUT_OVERRIDE = "10";
     private Map<String, String> params;
 
     @Before
@@ -55,5 +57,16 @@ public class TwillioBuilderTest extends UnitTest {
     @Test
     public void shouldContainRecordKey() {
         assertThat(params.get("Record"), is(equalTo(TEST_RECORD)));
+    }
+
+    @Test
+    public void shouldContainDefaultTimeoutKey() {
+        assertThat(params.get("Timeout"), is(equalTo(TEST_TIMEOUT)));
+    }
+
+    @Test
+    public void shouldContainSpecifiedTimeoutKey() {
+        assertThat(TwilioBuilder.buildOutgoingCallParams(TEST_TO, TEST_FROM, TEST_URL, TEST_TIMEOUT_OVERRIDE)
+                .get("Timeout"), is(equalTo("10")));
     }
 }
