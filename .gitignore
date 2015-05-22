@@ -4,7 +4,6 @@
 *.ipr
 bin/
 data/
-db/
 dist/
 logs/
 test-result/
