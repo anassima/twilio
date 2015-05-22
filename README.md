@@ -9,7 +9,10 @@ Steps so far:
 7. TDD then skeleton implementations (patterns: builder, translator, factory)
 8. Added hamcrest-library dependency for hasEntry()
 
+MIS
+
+Patterns, tests, local H2 database, model inheritance, decouple from Trillio, facade for call model, 
+
 TODO
 
 * Secure AUTH_TOKEN, for moment none for simplicity/time constraints (alternative ENV variables)
-* Persist to db
