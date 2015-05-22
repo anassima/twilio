@@ -1,6 +1,5 @@
 package translators;
 
-import javafx.util.Pair;
 import models.CallStatus;
 import models.PlacedCall;
 import org.joda.time.DateTime;
