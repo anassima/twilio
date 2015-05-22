@@ -31,7 +31,6 @@ public class Application extends Controller {
     }
 
     public static void getCalls() {
-        System.out.println(">>" + callService);
         List<Call> calls = callService.getCalls();
         render(calls);
     }
