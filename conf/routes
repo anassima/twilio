@@ -5,6 +5,8 @@
 # Home page
 GET     /                                       Application.index
 GET     /call/{number}                          Application.callNumber
+GET     /startjob                               Application.startJob
+GET     /stopjob                                Application.stopJob
 
 # Ignore favicon requests
 GET     /favicon.ico                            404
