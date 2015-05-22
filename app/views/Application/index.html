@@ -3,7 +3,7 @@
 
 <h1>Home</h1>
 
-<a href="@{Application.getCalls()}">Get all calls from Twilio API</a>
+<a href="@{Application.getCalls()}">View calls from Twilio API (and persist locally)</a>
 <br />
 <a href="@{Application.startJob()}">Start spam calling job</a>
 <br />
@@ -31,17 +31,17 @@
         <th>Duration</th>
     </thead>
     <tbody>
-        #{list items:calls, as:'call'}
+        #{list items:outgoingCalls, as:'outgoingCall'}
         <tr>
-            <td>${call.cid}</td>
-            <td>${call.status}</td>
-            <td>${call.callTo}</td>
-            <td>${call.callFrom}</td>
-            <td>${call.created}</td>
-            <td>${call.updated}</td>
-            <td>${call.start}</td>
-            <td>${call.end}</td>
-            <td>${call.duration}</td>
+            <td>${outgoingCall.cid}</td>
+            <td>${outgoingCall.status}</td>
+            <td>${outgoingCall.callTo}</td>
+            <td>${outgoingCall.callFrom}</td>
+            <td>${outgoingCall.created}</td>
+            <td>${outgoingCall.updated}</td>
+            <td>${outgoingCall.start}</td>
+            <td>${outgoingCall.end}</td>
+            <td>${outgoingCall.duration}</td>
         </tr>
         #{/list}
     </tbody>

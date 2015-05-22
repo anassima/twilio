@@ -7,40 +7,40 @@ import play.test.UnitTest;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.core.Is.is;
 
-public class CallTest extends UnitTest {
+public class OutgoingCallTest extends UnitTest {
     private static final String TEST_CID = "cid";
     private static final CallStatus TEST_STATUS = CallStatus.COMPLETED;
     private static final String TEST_TO = "123";
     private static final String TEST_FROM = "456";
-    private Call call;
+    private OutgoingCall outgoingCall;
 
     @Before
     public void setUp() {
-        call = new Call();
+        outgoingCall = new OutgoingCall();
 
-        call.setCid(TEST_CID);
-        call.setStatus(TEST_STATUS);
-        call.setCallTo(TEST_TO);
-        call.setCallFrom(TEST_FROM);
+        outgoingCall.setCid(TEST_CID);
+        outgoingCall.setStatus(TEST_STATUS);
+        outgoingCall.setCallTo(TEST_TO);
+        outgoingCall.setCallFrom(TEST_FROM);
     }
 
     @Test
     public void shouldReturnCallId() {
-        assertThat(call.getCid(), is(equalTo(TEST_CID)));
+        assertThat(outgoingCall.getCid(), is(equalTo(TEST_CID)));
     }
 
     @Test
     public void shouldReturnStatus() {
-        assertThat(call.getStatus(), is(equalTo(TEST_STATUS)));
+        assertThat(outgoingCall.getStatus(), is(equalTo(TEST_STATUS)));
     }
 
     @Test
     public void shouldReturnCallTo() {
-        assertThat(call.getCallTo(), is(equalTo(TEST_TO)));
+        assertThat(outgoingCall.getCallTo(), is(equalTo(TEST_TO)));
     }
 
     @Test
     public void shouldReturnCallFrom() {
-        assertThat(call.getCallFrom(), is(equalTo(TEST_FROM)));
+        assertThat(outgoingCall.getCallFrom(), is(equalTo(TEST_FROM)));
     }
 }

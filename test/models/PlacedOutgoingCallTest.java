@@ -8,17 +8,17 @@ import play.test.UnitTest;
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.core.Is.is;
 
-public class PlacedCallTest extends UnitTest {
+public class PlacedOutgoingCallTest extends UnitTest {
     private static final DateTime TEST_CREATED = new DateTime();
     private static final DateTime TEST_UPDATED = new DateTime().plusDays(1);
     private static final DateTime TEST_START = new DateTime().plusDays(2);
     private static final DateTime TEST_END = new DateTime().plusDays(3);
     private static final int TEST_DURATION = new Integer(10);
-    private PlacedCall placedCall;
+    private PlacedOutgoingCall placedCall;
 
     @Before
     public void setUp() {
-        placedCall = new PlacedCall();
+        placedCall = new PlacedOutgoingCall();
 
         placedCall.setCreated(TEST_CREATED);
         placedCall.setUpdated(TEST_UPDATED);

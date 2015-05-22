@@ -3,11 +3,9 @@ package models;
 import play.db.jpa.Model;
 
 import javax.persistence.Entity;
-import javax.persistence.Table;
 
 @Entity
-@Table(name = "calls")
-public class Call extends Model {
+public class OutgoingCall extends Model {
     private String cid;
     private CallStatus status;
     private String callTo;

@@ -2,7 +2,7 @@ package controllers;
 
 import factories.CallFactory;
 import jobs.CallSpamJob;
-import models.Call;
+import models.OutgoingCall;
 import play.mvc.*;
 import services.CallService;
 
@@ -20,19 +20,24 @@ public class Application extends Controller {
     }
 
     public static void index() {
-        List<Call> calls = Call.findAll();
-        render(calls);
+        List<OutgoingCall> outgoingCalls = OutgoingCall.findAll();
+        render(outgoingCalls);
     }
 
     public static void callNumber(String number) {
-        Call call = (Call) callService.makeCall(number, TIMEOUT_SECONDS);
-        call.save();
-        render(call);
+        OutgoingCall outgoingCall = (OutgoingCall) callService.makeCall(number, TIMEOUT_SECONDS);
+        outgoingCall.save();
+        render(outgoingCall);
     }
 
     public static void getCalls() {
-        List<Call> calls = callService.getCalls();
-        render(calls);
+        List<OutgoingCall> outgoingCalls = callService.getCalls();
+
+        for (OutgoingCall outgoingCall : outgoingCalls) {
+            outgoingCall.save();
+        }
+
+        render(outgoingCalls);
     }
 
     public static void startJob() {

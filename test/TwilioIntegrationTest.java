@@ -1,5 +1,5 @@
 import factories.CallFactory;
-import models.Call;
+import models.OutgoingCall;
 import org.junit.Before;
 import org.junit.Test;
 import play.test.UnitTest;
@@ -22,13 +22,13 @@ public class TwilioIntegrationTest extends UnitTest {
 
     @Test
     public void shouldMakeValidCall() {
-        Call call = (Call) callService.makeCall("9173799794", "1");
-        assertThat(call, is(instanceOf(Call.class)));
+        OutgoingCall outgoingCall = (OutgoingCall) callService.makeCall("9173799794", "1");
+        assertThat(outgoingCall, is(instanceOf(OutgoingCall.class)));
     }
 
     @Test
     public void shouldGetAllCalls() {
-        List<Call> calls = callService.getCalls();
-        assertThat(calls.size(), is(greaterThan(0))); // Assumption we have live data
+        List<OutgoingCall> outgoingCalls = callService.getCalls();
+        assertThat(outgoingCalls.size(), is(greaterThan(0))); // Assumption we have live data
     }
 }

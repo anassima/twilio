@@ -4,9 +4,10 @@ import builders.TwilioBuilder;
 import com.twilio.sdk.TwilioRestClient;
 import com.twilio.sdk.TwilioRestException;
 import com.twilio.sdk.resource.factory.CallFactory;
+import com.twilio.sdk.resource.instance.Call;
 import com.twilio.sdk.resource.list.CallList;
-import models.Call;
-import models.PlacedCall;
+import models.OutgoingCall;
+import models.PlacedOutgoingCall;
 import translators.CallTranslator;
 import play.Logger;
 
@@ -28,26 +29,26 @@ public class TwilioCallService implements CallService {
         this.client = client;
     }
 
-    public List<Call> getCalls() {
-        List<Call> calls = new ArrayList<Call>();
+    public List<OutgoingCall> getCalls() {
+        List<OutgoingCall> outgoingCalls = new ArrayList<OutgoingCall>();
         Map<String, String> params = new HashMap<String, String>();
 
         CallList twilioCalls = client.getAccount().getCalls(params);
 
         if (twilioCalls != null) {
-            for (com.twilio.sdk.resource.instance.Call call : twilioCalls) {
-                calls.add(CallTranslator.translate(call));
+            for (Call call : twilioCalls) {
+                outgoingCalls.add(CallTranslator.translate(call));
             }
         }
 
-        return calls;
+        return outgoingCalls;
     }
 
-    public PlacedCall makeCall(String number) {
+    public PlacedOutgoingCall makeCall(String number) {
         return makeCall(number, null);
     }
 
-    public PlacedCall makeCall(String number, String timeout) {
+    public PlacedOutgoingCall makeCall(String number, String timeout) {
         Map<String, String> params = buildRequestParams(number, timeout);
 
         try {
@@ -71,9 +72,9 @@ public class TwilioCallService implements CallService {
         }
     }
 
-    private PlacedCall makeOutGoingCall(Map<String, String> params) throws TwilioRestException {
+    private PlacedOutgoingCall makeOutGoingCall(Map<String, String> params) throws TwilioRestException {
         CallFactory callFactory = client.getAccount().getCallFactory();
-        com.twilio.sdk.resource.instance.Call call = callFactory.create(params);
+        Call call = callFactory.create(params);
 
         return CallTranslator.translate(call);
     }

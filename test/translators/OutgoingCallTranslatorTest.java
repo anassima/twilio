@@ -1,8 +1,9 @@
 package translators;
 
-import models.Call;
+import com.twilio.sdk.resource.instance.Call;
+import models.OutgoingCall;
 import models.CallStatus;
-import models.PlacedCall;
+import models.PlacedOutgoingCall;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
@@ -17,7 +18,7 @@ import static org.hamcrest.core.Is.is;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
-public class CallTranslatorTest extends UnitTest {
+public class OutgoingCallTranslatorTest extends UnitTest {
     private static final String TEST_CID = "cid";
     private static final CallStatus TEST_STATUS_COMPLETED = CallStatus.COMPLETED;
     private static final String TEST_STATUS = "completed";
@@ -29,72 +30,72 @@ public class CallTranslatorTest extends UnitTest {
     private static final String TEST_END = "Thu, 21 May 2015 22:40:00 +0000";
     private static final String TEST_DURATION = "10";
     private static DateTimeFormatter DATE_FORMAT = DateTimeFormat.forPattern("EEE, dd MMM yyyy HH:mm:ss Z");
-    private Call call;
-    private com.twilio.sdk.resource.instance.Call twilioCall;
+    private OutgoingCall outgoingCall;
+    private Call twilioCall;
 
     @Before
     public void setUp() {
-        twilioCall = mock(com.twilio.sdk.resource.instance.Call.class);
+        twilioCall = mock(Call.class);
 
         when(twilioCall.getSid()).thenReturn(TEST_CID);
         when(twilioCall.getStatus()).thenReturn(TEST_STATUS);
         when(twilioCall.getTo()).thenReturn(TEST_TO);
         when(twilioCall.getFrom()).thenReturn(TEST_FROM);
 
-        call = CallTranslator.translate(twilioCall);
+        outgoingCall = CallTranslator.translate(twilioCall);
     }
 
     @Test
     public void shouldTranslateCid() {
-        assertThat(call.getCid(), is(equalTo(TEST_CID)));
+        assertThat(outgoingCall.getCid(), is(equalTo(TEST_CID)));
     }
 
     @Test
     public void shouldTranslateStatusCompleted() {
-        assertThat(call.getStatus(), is(equalTo(TEST_STATUS_COMPLETED)));
+        assertThat(outgoingCall.getStatus(), is(equalTo(TEST_STATUS_COMPLETED)));
     }
 
     @Test
     public void shouldTranslateTo() {
-        assertThat(call.getCallTo(), is(equalTo(TEST_TO)));
+        assertThat(outgoingCall.getCallTo(), is(equalTo(TEST_TO)));
     }
 
     @Test
     public void shouldTranslateFrom() {
-        assertThat(call.getCallFrom(), is(equalTo(TEST_FROM)));
+        assertThat(outgoingCall.getCallFrom(), is(equalTo(TEST_FROM)));
     }
 
     @Test
     public void shouldTranslatePlacedCallCreated() {
-        PlacedCall placedCall = placedCallSetUp();
+        PlacedOutgoingCall placedCall = placedCallSetUp();
         assertThat(placedCall.getCreated(), is(equalTo(new DateTime(TEST_CREATED))));
     }
 
     @Test
     public void shouldTranslatePlacedCallUpdated() {
-        PlacedCall placedCall = placedCallSetUp();
+        PlacedOutgoingCall placedCall = placedCallSetUp();
         assertThat(placedCall.getUpdated(), is(equalTo(new DateTime(TEST_UPDATED))));
     }
 
     @Test
     public void shouldTranslatePlacedCallStart() {
-        PlacedCall placedCall = placedCallSetUp();
+        PlacedOutgoingCall placedCall = placedCallSetUp();
         assertThat(placedCall.getStart(), is(equalTo(DATE_FORMAT.parseDateTime(TEST_START))));
     }
 
     @Test
     public void shouldTranslatePlacedCallEnd() {
-        PlacedCall placedCall = placedCallSetUp();
+        PlacedOutgoingCall placedCall = placedCallSetUp();
         assertThat(placedCall.getEnd(), is(equalTo(DATE_FORMAT.parseDateTime(TEST_END))));
     }
 
     @Test
     public void shouldTranslatePlacedCallDuration() {
-        PlacedCall placedCall = placedCallSetUp();
+        PlacedOutgoingCall placedCall = placedCallSetUp();
         assertThat(placedCall.getDuration().intValue(), is(equalTo(Integer.parseInt(TEST_DURATION))));
     }
 
-    private PlacedCall placedCallSetUp() {
+    private PlacedOutgoingCall placedCallSetUp() {
         when(twilioCall.getDateCreated()).thenReturn(TEST_CREATED);
         when(twilioCall.getDateUpdated()).thenReturn(TEST_UPDATED);
         when(twilioCall.getStartTime()).thenReturn(TEST_START);

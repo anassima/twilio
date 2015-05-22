@@ -4,10 +4,10 @@
 
 # Home page
 GET     /                                       Application.index
-GET     /call/{number}                          Application.callNumber
+GET     /outgoingCall/{number}                          Application.callNumber
 GET     /startjob                               Application.startJob
 GET     /stopjob                                Application.stopJob
-GET     /calls                                  Application.getCalls
+GET     /outgoingCalls                                  Application.getCalls
 
 # Ignore favicon requests
 GET     /favicon.ico                            404

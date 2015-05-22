@@ -1,7 +1,7 @@
 package jobs;
 
 import factories.CallFactory;
-import models.Call;
+import models.OutgoingCall;
 import play.Logger;
 import play.jobs.Job;
 import services.CallService;
@@ -32,8 +32,8 @@ public class CallSpamJob extends Job {
 
     private void callNumber(String number) {
         CallService callService = CallFactory.getCallService(SERVICE_NAME_TWILIO);
-        Call call = (Call) callService.makeCall(number, TIMEOUT_SECONDS);
-        call.save();
+        OutgoingCall outgoingCall = (OutgoingCall) callService.makeCall(number, TIMEOUT_SECONDS);
+        outgoingCall.save();
     }
 
     public void stop() {

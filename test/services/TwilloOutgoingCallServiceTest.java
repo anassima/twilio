@@ -4,7 +4,8 @@ import com.twilio.sdk.TwilioRestClient;
 import com.twilio.sdk.TwilioRestException;
 import com.twilio.sdk.resource.factory.CallFactory;
 import com.twilio.sdk.resource.instance.Account;
-import models.PlacedCall;
+import com.twilio.sdk.resource.instance.Call;
+import models.PlacedOutgoingCall;
 import org.junit.Before;
 import org.junit.Test;
 import play.test.UnitTest;
@@ -20,20 +21,20 @@ import static org.mockito.Matchers.anyMap;
 import static org.mockito.Matchers.argThat;
 import static org.mockito.Mockito.*;
 
-public class TwilloCallServiceTest extends UnitTest {
+public class TwilloOutgoingCallServiceTest extends UnitTest {
     private static final String TEST_NUMBER = "123";
     private static final String TEST_TIMEOUT = "10";
     private TwilioCallService callService;
     private Account mockAccount;
     private CallFactory mockCallFactory;
-    private com.twilio.sdk.resource.instance.Call mockCall;
+    private Call mockCall;
 
     @Before
     public void setUp() throws TwilioRestException {
         TwilioRestClient mockClient = mock(TwilioRestClient.class);
         mockAccount = mock(Account.class);
         mockCallFactory = mock(CallFactory.class);
-        mockCall = mock(com.twilio.sdk.resource.instance.Call.class);
+        mockCall = mock(Call.class);
 
         when(mockClient.getAccount()).thenReturn(mockAccount);
         when(mockAccount.getCallFactory()).thenReturn(mockCallFactory);
@@ -45,7 +46,7 @@ public class TwilloCallServiceTest extends UnitTest {
 
     @Test
     public void shouldReturnCallObject() {
-        assertThat(callService.makeCall(TEST_NUMBER), is(instanceOf(PlacedCall.class)));
+        assertThat(callService.makeCall(TEST_NUMBER), is(instanceOf(PlacedOutgoingCall.class)));
     }
 
     @Test

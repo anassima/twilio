@@ -1,14 +1,14 @@
 package services;
 
-import models.Call;
-import models.PlacedCall;
+import models.OutgoingCall;
+import models.PlacedOutgoingCall;
 
 import java.util.List;
 
 public interface CallService {
-    List<Call> getCalls();
+    List<OutgoingCall> getCalls();
 
-    PlacedCall makeCall(String number);
+    PlacedOutgoingCall makeCall(String number);
 
-    PlacedCall makeCall(String number, String timeout);
+    PlacedOutgoingCall makeCall(String number, String timeout);
 }

@@ -1,7 +1,8 @@
 package translators;
 
+import com.twilio.sdk.resource.instance.Call;
 import models.CallStatus;
-import models.PlacedCall;
+import models.PlacedOutgoingCall;
 import org.joda.time.DateTime;
 import org.joda.time.format.DateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
@@ -26,8 +27,8 @@ public class CallTranslator {
         STATUS_LOOKUP.add(new AbstractMap.SimpleEntry<String, CallStatus>("canceled", CallStatus.CANCELED));
     }
 
-    public static PlacedCall translate(com.twilio.sdk.resource.instance.Call twilioCall) {
-        PlacedCall placedCall = new PlacedCall();
+    public static PlacedOutgoingCall translate(Call twilioCall) {
+        PlacedOutgoingCall placedCall = new PlacedOutgoingCall();
 
         addBaseProperties(placedCall, twilioCall);
         addAdditionalProperties(placedCall, twilioCall);
@@ -36,7 +37,7 @@ public class CallTranslator {
     }
 
     private static void addBaseProperties(
-            PlacedCall placedCall, com.twilio.sdk.resource.instance.Call twilioCall) {
+            PlacedOutgoingCall placedCall, Call twilioCall) {
 
         placedCall.setCid(twilioCall.getSid());
         placedCall.setStatus(convertStatus(twilioCall.getStatus()));
@@ -45,7 +46,7 @@ public class CallTranslator {
     }
 
     private static void addAdditionalProperties(
-            PlacedCall placedCall, com.twilio.sdk.resource.instance.Call twilioCall) {
+            PlacedOutgoingCall placedCall, Call twilioCall) {
 
         if (hasAdditionalProperties(twilioCall)) {
             placedCall.setCreated(new DateTime(twilioCall.getDateCreated()));
@@ -56,14 +57,16 @@ public class CallTranslator {
         }
     }
 
-    private static boolean hasAdditionalProperties(com.twilio.sdk.resource.instance.Call twilioCall) {
+    private static boolean hasAdditionalProperties(Call twilioCall) {
         return twilioCall.getDuration() != null;
     }
 
     private static CallStatus convertStatus(String status) {
-        for (AbstractMap.SimpleEntry<String, CallStatus> entry : STATUS_LOOKUP) {
-            if (status.equalsIgnoreCase(entry.getKey())) {
-                return entry.getValue();
+        if (status != null) {
+            for (AbstractMap.SimpleEntry<String, CallStatus> entry : STATUS_LOOKUP) {
+                if (status.equalsIgnoreCase(entry.getKey())) {
+                    return entry.getValue();
+                }
             }
         }
 

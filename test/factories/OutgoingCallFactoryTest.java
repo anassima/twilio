@@ -8,7 +8,7 @@ import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.core.Is.is;
 
-public class CallFactoryTest extends UnitTest {
+public class OutgoingCallFactoryTest extends UnitTest {
     private static final String NAME_TWILIO = "twilio";
     private static final String NAME_INVALID = "invalid";
 

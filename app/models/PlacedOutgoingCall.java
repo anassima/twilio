@@ -5,7 +5,7 @@ import org.joda.time.DateTime;
 import javax.persistence.Entity;
 
 @Entity
-public class PlacedCall extends Call {
+public class PlacedOutgoingCall extends OutgoingCall {
     private DateTime created;
     private DateTime updated;
     private DateTime start;
