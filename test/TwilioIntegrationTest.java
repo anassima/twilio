@@ -23,16 +23,13 @@ public class TwilioIntegrationTest extends UnitTest {
     public void shouldMakeValidCall() {
         Call call = (Call) callService.makeCall("9173799794", "1");
         call.save();
-        assertThat(call, is(instanceOf(Call.class)));
-    }
 
-    @Test
-    public void shouldGetAllCallsFromDb() {
         List<Call> calls = Call.findAll();
 
-        for (Call call : calls) {
-            System.out.println(call.getCid());
-            System.out.println(call.toString());
+        for (Call foo : calls) {
+            System.out.println(foo.getCid());
         }
+
+        assertThat(call, is(instanceOf(Call.class)));
     }
 }

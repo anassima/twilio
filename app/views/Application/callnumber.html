@@ -1,0 +1,34 @@
+#{extends 'main.html' /}
+#{set title:'Home' /}
+
+<h1>Number Called</h1>
+
+<table>
+    <thead>
+    <th>ID</th>
+    <th>Status</th>
+    <th>To</th>
+    <th>From</th>
+    <th>Created</th>
+    <th>Updated</th>
+    <th>Started</th>
+    <th>Ended</th>
+    <th>Duration</th>
+    </thead>
+    <tbody>
+    <tr>
+        <td>${call.cid}</td>
+        <td>${call.status}</td>
+        <td>${call.callTo}</td>
+        <td>${call.callFrom}</td>
+        <td>${call.created}</td>
+        <td>${call.updated}</td>
+        <td>${call.start}</td>
+        <td>${call.end}</td>
+        <td>${call.duration}</td>
+    </tr>
+    </tbody>
+</table>
+
+<a href="@{Application.index()}">Back Home</a>
+
