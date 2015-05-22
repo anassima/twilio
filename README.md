@@ -16,3 +16,5 @@ Patterns, tests, local H2 database, model inheritance, decouple from Trillio, fa
 TODO
 
 * Secure AUTH_TOKEN, for moment none for simplicity/time constraints (alternative ENV variables)
+* Controller test
+* File cleanup (e.g. generated tests)

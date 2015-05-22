@@ -1,6 +1,5 @@
 package jobs;
 
-import controllers.Application;
 import factories.CallFactory;
 import models.Call;
 import play.Logger;

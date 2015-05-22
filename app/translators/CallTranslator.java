@@ -34,8 +34,8 @@ public class CallTranslator {
         if (hasAdditionalProperties(twilioCall)) {
             placedCall.setCreated(new DateTime(twilioCall.getDateCreated()));
             placedCall.setUpdated(new DateTime(twilioCall.getDateUpdated()));
-            placedCall.setStart(DATE_FORMAT.parseDateTime(twilioCall.getStartTime()));
-            placedCall.setEnd(DATE_FORMAT.parseDateTime(twilioCall.getEndTime()));
+            placedCall.setStart(DATE_FORMAT.parseDateTime("" + twilioCall.getStartTime()));
+            placedCall.setEnd(DATE_FORMAT.parseDateTime("" + twilioCall.getEndTime()));
             placedCall.setDuration(Integer.parseInt(twilioCall.getDuration()));
         }
     }
