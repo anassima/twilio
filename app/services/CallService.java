@@ -1,9 +1,9 @@
 package services;
 
-import models.Call;
+import models.PlacedCall;
 
 public interface CallService {
-    Call makeCall(String number);
+    PlacedCall makeCall(String number);
 
-    Call makeCall(String number, String timeout);
+    PlacedCall makeCall(String number, String timeout);
 }

@@ -24,8 +24,8 @@ public class CallTranslator {
 
         placedCall.setCid(twilioCall.getSid());
         placedCall.setStatus(convertStatus(twilioCall.getStatus()));
-        placedCall.setTo(twilioCall.getTo());
-        placedCall.setFrom(twilioCall.getFrom());
+        placedCall.setCallTo(twilioCall.getTo());
+        placedCall.setCallFrom(twilioCall.getFrom());
     }
 
     private static void addAdditionalProperties(

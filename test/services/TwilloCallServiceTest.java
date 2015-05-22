@@ -5,6 +5,7 @@ import com.twilio.sdk.TwilioRestException;
 import com.twilio.sdk.resource.factory.CallFactory;
 import com.twilio.sdk.resource.instance.Account;
 import models.Call;
+import models.PlacedCall;
 import org.junit.Before;
 import org.junit.Test;
 import play.test.UnitTest;
@@ -43,7 +44,7 @@ public class TwilloCallServiceTest extends UnitTest {
 
     @Test
     public void shouldReturnCallObject() {
-        assertThat(callService.makeCall(TEST_NUMBER), is(instanceOf(Call.class)));
+        assertThat(callService.makeCall(TEST_NUMBER), is(instanceOf(PlacedCall.class)));
     }
 
     @Test

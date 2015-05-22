@@ -20,8 +20,8 @@ public class CallTest extends UnitTest {
 
         call.setCid(TEST_CID);
         call.setStatus(TEST_STATUS);
-        call.setTo(TEST_TO);
-        call.setFrom(TEST_FROM);
+        call.setCallTo(TEST_TO);
+        call.setCallFrom(TEST_FROM);
     }
 
     @Test
@@ -35,12 +35,12 @@ public class CallTest extends UnitTest {
     }
 
     @Test
-    public void shouldReturnTo() {
-        assertThat(call.getTo(), is(equalTo(TEST_TO)));
+    public void shouldReturnCallTo() {
+        assertThat(call.getCallTo(), is(equalTo(TEST_TO)));
     }
 
     @Test
-    public void shouldReturnFrom() {
-        assertThat(call.getFrom(), is(equalTo(TEST_FROM)));
+    public void shouldReturnCallFrom() {
+        assertThat(call.getCallFrom(), is(equalTo(TEST_FROM)));
     }
 }

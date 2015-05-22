@@ -5,6 +5,7 @@ import com.twilio.sdk.TwilioRestClient;
 import com.twilio.sdk.TwilioRestException;
 import com.twilio.sdk.resource.factory.CallFactory;
 import models.Call;
+import models.PlacedCall;
 import translators.CallTranslator;
 import play.Logger;
 
@@ -23,11 +24,11 @@ public class TwilioCallService implements CallService {
         this.client = client;
     }
 
-    public Call makeCall(String number) {
+    public PlacedCall makeCall(String number) {
         return makeCall(number, null);
     }
 
-    public Call makeCall(String number, String timeout) {
+    public PlacedCall makeCall(String number, String timeout) {
         Map<String, String> params = buildRequestParams(number, timeout);
 
         try {
@@ -51,7 +52,7 @@ public class TwilioCallService implements CallService {
         }
     }
 
-    private Call makeOutGoingCall(Map<String, String> params) throws TwilioRestException {
+    private PlacedCall makeOutGoingCall(Map<String, String> params) throws TwilioRestException {
         CallFactory callFactory = client.getAccount().getCallFactory();
         com.twilio.sdk.resource.instance.Call call = callFactory.create(params);
 

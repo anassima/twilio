@@ -8,8 +8,8 @@ import javax.persistence.Entity;
 public class Call extends Model {
     private String cid;
     private CallStatus status;
-    private String to;
-    private String from;
+    private String callTo;
+    private String callFrom;
 
     public String getCid() {
         return cid;
@@ -27,19 +27,19 @@ public class Call extends Model {
         this.status = status;
     }
 
-    public String getTo() {
-        return to;
+    public String getCallTo() {
+        return callTo;
     }
 
-    public void setTo(String to) {
-        this.to = to;
+    public void setCallTo(String callTo) {
+        this.callTo = callTo;
     }
 
-    public String getFrom() {
-        return from;
+    public String getCallFrom() {
+        return callFrom;
     }
 
-    public void setFrom(String from) {
-        this.from = from;
+    public void setCallFrom(String callFrom) {
+        this.callFrom = callFrom;
     }
 }

@@ -56,12 +56,12 @@ public class CallTranslatorTest extends UnitTest {
 
     @Test
     public void shouldTranslateTo() {
-        assertThat(call.getTo(), is(equalTo(TEST_TO)));
+        assertThat(call.getCallTo(), is(equalTo(TEST_TO)));
     }
 
     @Test
     public void shouldTranslateFrom() {
-        assertThat(call.getFrom(), is(equalTo(TEST_FROM)));
+        assertThat(call.getCallFrom(), is(equalTo(TEST_FROM)));
     }
 
     @Test
