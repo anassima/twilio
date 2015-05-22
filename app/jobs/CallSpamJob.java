@@ -9,7 +9,7 @@ import services.CallService;
 public class CallSpamJob extends Job {
     private static final String SERVICE_NAME_TWILIO = "twilio";
     private static final int MAX_NUM_ITERATIONS = 1000;
-    private static final int MAX_SLEEP_MILLISECONDS = 60000;
+    private static final int MAX_SLEEP_MILLISECONDS = 30000;
     private static final String[] TEST_NUMBERS = {"9173799794", "9178414441"};
     private static final String TIMEOUT_SECONDS = "1";
     private boolean isRunning;
@@ -20,8 +20,8 @@ public class CallSpamJob extends Job {
         int i = 0;
 
         while (isRunning && i < MAX_NUM_ITERATIONS) {
-            Thread.sleep(getRandomTime(MAX_SLEEP_MILLISECONDS));
-            String number = TEST_NUMBERS[getRandomTime(1)];
+            Thread.sleep(getRandomNumber(MAX_SLEEP_MILLISECONDS));
+            String number = TEST_NUMBERS[getRandomNumber(2)];
             Logger.info("Calling number: " + number);
 
             callNumber(number);
@@ -41,7 +41,7 @@ public class CallSpamJob extends Job {
         isRunning = false;
     }
 
-    private int getRandomTime(int ceiling) {
+    private int getRandomNumber(int ceiling) {
         return (int)(Math.random() * ceiling);
     }
 }

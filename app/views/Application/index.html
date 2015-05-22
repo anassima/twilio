@@ -3,10 +3,20 @@
 
 <h1>Home</h1>
 
+<a href="@{Application.getCalls()}">Get all calls from Twilio API</a>
+<br />
+<a href="@{Application.startJob()}">Start spam calling job</a>
+<br />
+<a href="@{Application.stopJob()}">Stop spam calling job</a>
+<br />
+<br />
+
 <form action="@{Application.callNumber()}" method="GET">
     <input type="text" name="number" value="9173799794" />
     <input type="submit" value="Call now!" />
 </form>
+
+<br />
 
 <table>
     <thead>
