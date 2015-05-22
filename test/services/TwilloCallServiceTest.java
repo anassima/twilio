@@ -4,7 +4,6 @@ import com.twilio.sdk.TwilioRestClient;
 import com.twilio.sdk.TwilioRestException;
 import com.twilio.sdk.resource.factory.CallFactory;
 import com.twilio.sdk.resource.instance.Account;
-import models.Call;
 import models.PlacedCall;
 import org.junit.Before;
 import org.junit.Test;
@@ -14,6 +13,7 @@ import java.util.Map;
 
 import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.CoreMatchers.nullValue;
+import static org.hamcrest.Matchers.empty;
 import static org.hamcrest.collection.IsMapContaining.hasEntry;
 import static org.hamcrest.core.Is.is;
 import static org.mockito.Matchers.anyMap;
@@ -24,13 +24,14 @@ public class TwilloCallServiceTest extends UnitTest {
     private static final String TEST_NUMBER = "123";
     private static final String TEST_TIMEOUT = "10";
     private TwilioCallService callService;
+    private Account mockAccount;
     private CallFactory mockCallFactory;
     private com.twilio.sdk.resource.instance.Call mockCall;
 
     @Before
     public void setUp() throws TwilioRestException {
         TwilioRestClient mockClient = mock(TwilioRestClient.class);
-        Account mockAccount = mock(Account.class);
+        mockAccount = mock(Account.class);
         mockCallFactory = mock(CallFactory.class);
         mockCall = mock(com.twilio.sdk.resource.instance.Call.class);
 
@@ -59,4 +60,19 @@ public class TwilloCallServiceTest extends UnitTest {
         verify(mockCallFactory).create((Map<String, String>) argThat(hasEntry("Timeout", TEST_TIMEOUT)));
     }
 
+    @Test
+    public void shouldReturnEmptyListOnNullCallList() throws TwilioRestException {
+        when(mockAccount.getCalls(anyMap())).thenReturn(null);
+        assertThat(callService.getCalls(), is(empty()));
+    }
+
+    @Test
+    public void shouldReturnCallList() throws TwilioRestException {
+        // TODO: Not yet implemented
+    }
+
+    @Test
+    public void shouldReturnCallListWithDateFilters() throws TwilioRestException {
+        // TODO: Not yet implemented
+    }
 }

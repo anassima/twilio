@@ -11,3 +11,4 @@ test-result/
 lib/
 tmp/
 modules/
+precompiled/

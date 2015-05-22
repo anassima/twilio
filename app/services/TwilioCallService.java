@@ -4,10 +4,15 @@ import builders.TwilioBuilder;
 import com.twilio.sdk.TwilioRestClient;
 import com.twilio.sdk.TwilioRestException;
 import com.twilio.sdk.resource.factory.CallFactory;
+import com.twilio.sdk.resource.list.CallList;
+import models.Call;
 import models.PlacedCall;
 import translators.CallTranslator;
 import play.Logger;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class TwilioCallService implements CallService {
@@ -21,6 +26,21 @@ public class TwilioCallService implements CallService {
 
     public TwilioCallService(TwilioRestClient client) {
         this.client = client;
+    }
+
+    public List<Call> getCalls() {
+        List<Call> calls = new ArrayList<Call>();
+        Map<String, String> params = new HashMap<String, String>();
+
+        CallList twilioCalls = client.getAccount().getCalls(params);
+
+        if (twilioCalls != null) {
+            for (com.twilio.sdk.resource.instance.Call call : twilioCalls) {
+                calls.add(CallTranslator.translate(call));
+            }
+        }
+
+        return calls;
     }
 
     public PlacedCall makeCall(String number) {

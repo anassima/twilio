@@ -14,6 +14,7 @@ MIS
 Patterns, tests, local H2 database, model inheritance, decouple from Trillio, facade for call model, 
 Twilio detected key on GitHub!
 Heroku issues (boot time, Pair class)
+between rock hard place -- naming of Call class error in mysql, rename error on heroku. need time reactor.
 
 https://enigmatic-mesa-1388.herokuapp.com/
 
