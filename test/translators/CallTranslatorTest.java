@@ -91,7 +91,7 @@ public class CallTranslatorTest extends UnitTest {
     @Test
     public void shouldTranslatePlacedCallDuration() {
         PlacedCall placedCall = placedCallSetUp();
-        assertThat(placedCall.getDuration(), is(equalTo(Integer.parseInt(TEST_DURATION))));
+        assertThat(placedCall.getDuration().intValue(), is(equalTo(Integer.parseInt(TEST_DURATION))));
     }
 
     private PlacedCall placedCallSetUp() {

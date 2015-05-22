@@ -24,3 +24,4 @@ TODO
 * Implement Mast's number
 * Use collected data
 * What if API is down? Error log entry for grep?
+* Home page display job status isRunning

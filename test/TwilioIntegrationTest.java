@@ -5,8 +5,6 @@ import org.junit.Test;
 import play.test.UnitTest;
 import services.CallService;
 
-import java.util.List;
-
 import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.core.Is.is;
 
@@ -22,14 +20,6 @@ public class TwilioIntegrationTest extends UnitTest {
     @Test
     public void shouldMakeValidCall() {
         Call call = (Call) callService.makeCall("9173799794", "1");
-        call.save();
-
-        List<Call> calls = Call.findAll();
-
-        for (Call foo : calls) {
-            System.out.println(foo.getCid());
-        }
-
         assertThat(call, is(instanceOf(Call.class)));
     }
 }
