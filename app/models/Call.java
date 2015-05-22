@@ -22,7 +22,7 @@ public class Call extends Model {
     }
 
     public CallStatus getStatus() {
-        return CallStatus.SUCCESS;
+        return status;
     }
 
     public void setStatus(CallStatus status) {

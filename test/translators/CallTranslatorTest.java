@@ -19,7 +19,7 @@ import static org.mockito.Mockito.when;
 
 public class CallTranslatorTest extends UnitTest {
     private static final String TEST_CID = "cid";
-    private static final CallStatus TEST_STATUS_SUCCESS = CallStatus.SUCCESS;
+    private static final CallStatus TEST_STATUS_COMPLETED = CallStatus.COMPLETED;
     private static final String TEST_STATUS = "completed";
     private static final String TEST_TO = "to";
     private static final String TEST_FROM = "from";
@@ -51,7 +51,7 @@ public class CallTranslatorTest extends UnitTest {
 
     @Test
     public void shouldTranslateStatusCompleted() {
-        assertThat(call.getStatus(), is(equalTo(TEST_STATUS_SUCCESS)));
+        assertThat(call.getStatus(), is(equalTo(TEST_STATUS_COMPLETED)));
     }
 
     @Test

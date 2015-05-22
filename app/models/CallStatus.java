@@ -1,5 +1,14 @@
 package models;
 
+import javax.persistence.Entity;
+
 public enum CallStatus {
-    SUCCESS
+    QUEUED,
+    RINGING,
+    IN_PROGRESS,
+    BUSY,
+    FAILED,
+    NO_ANSWER,
+    CANCELED,
+    COMPLETED
 }

@@ -9,7 +9,7 @@ import static org.hamcrest.core.Is.is;
 
 public class CallTest extends UnitTest {
     private static final String TEST_CID = "cid";
-    private static final CallStatus TEST_STATUS = CallStatus.SUCCESS;
+    private static final CallStatus TEST_STATUS = CallStatus.COMPLETED;
     private static final String TEST_TO = "123";
     private static final String TEST_FROM = "456";
     private Call call;
