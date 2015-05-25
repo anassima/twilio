@@ -14,7 +14,6 @@ import java.util.List;
 public class CallTranslator {
     private static final List<AbstractMap.SimpleEntry<String, CallStatus>> STATUS_LOOKUP =
             new ArrayList<AbstractMap.SimpleEntry<String, CallStatus>>();
-    private static DateTimeFormatter DATE_FORMAT = DateTimeFormat.forPattern("EEE, dd MMM yyyy HH:mm:ss Z");
 
     static {
         STATUS_LOOKUP.add(new AbstractMap.SimpleEntry<String, CallStatus>("queued", CallStatus.QUEUED));
@@ -49,10 +48,10 @@ public class CallTranslator {
             PlacedOutgoingCall placedCall, Call twilioCall) {
 
         if (hasAdditionalProperties(twilioCall)) {
-            placedCall.setCreated(new DateTime(twilioCall.getDateCreated()));
-            placedCall.setUpdated(new DateTime(twilioCall.getDateUpdated()));
-            placedCall.setStart(DATE_FORMAT.parseDateTime("" + twilioCall.getStartTime()));
-            placedCall.setEnd(DATE_FORMAT.parseDateTime("" + twilioCall.getEndTime()));
+            placedCall.setCreated(twilioCall.getDateCreated());
+            placedCall.setUpdated(twilioCall.getDateUpdated());
+            placedCall.setStart(twilioCall.getStartTime());
+            placedCall.setEnd(twilioCall.getEndTime());
             placedCall.setDuration(Integer.parseInt(twilioCall.getDuration()));
         }
     }

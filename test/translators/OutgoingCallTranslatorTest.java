@@ -26,8 +26,8 @@ public class OutgoingCallTranslatorTest extends UnitTest {
     private static final String TEST_FROM = "from";
     private static final Date TEST_CREATED = new Date();
     private static final Date TEST_UPDATED = new Date(new Date().getTime() + 1);
-    private static final String TEST_START = "Thu, 21 May 2015 22:30:00 +0000";
-    private static final String TEST_END = "Thu, 21 May 2015 22:40:00 +0000";
+    private static final Date TEST_START = new Date(new Date().getTime() + 2);
+    private static final Date TEST_END = new Date(new Date().getTime() + 3);
     private static final String TEST_DURATION = "10";
     private static DateTimeFormatter DATE_FORMAT = DateTimeFormat.forPattern("EEE, dd MMM yyyy HH:mm:ss Z");
     private OutgoingCall outgoingCall;
@@ -68,25 +68,25 @@ public class OutgoingCallTranslatorTest extends UnitTest {
     @Test
     public void shouldTranslatePlacedCallCreated() {
         PlacedOutgoingCall placedCall = placedCallSetUp();
-        assertThat(placedCall.getCreated(), is(equalTo(new DateTime(TEST_CREATED))));
+        assertThat(placedCall.getCreated(), is(equalTo(TEST_CREATED)));
     }
 
     @Test
     public void shouldTranslatePlacedCallUpdated() {
         PlacedOutgoingCall placedCall = placedCallSetUp();
-        assertThat(placedCall.getUpdated(), is(equalTo(new DateTime(TEST_UPDATED))));
+        assertThat(placedCall.getUpdated(), is(equalTo(TEST_UPDATED)));
     }
 
     @Test
     public void shouldTranslatePlacedCallStart() {
         PlacedOutgoingCall placedCall = placedCallSetUp();
-        assertThat(placedCall.getStart(), is(equalTo(DATE_FORMAT.parseDateTime(TEST_START))));
+        assertThat(placedCall.getStart(), is(equalTo(TEST_START)));
     }
 
     @Test
     public void shouldTranslatePlacedCallEnd() {
         PlacedOutgoingCall placedCall = placedCallSetUp();
-        assertThat(placedCall.getEnd(), is(equalTo(DATE_FORMAT.parseDateTime(TEST_END))));
+        assertThat(placedCall.getEnd(), is(equalTo(TEST_END)));
     }
 
     @Test

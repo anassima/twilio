@@ -1,18 +1,19 @@
 package models;
 
-import org.joda.time.DateTime;
 import org.junit.Before;
 import org.junit.Test;
 import play.test.UnitTest;
+
+import java.util.Date;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.hamcrest.core.Is.is;
 
 public class PlacedOutgoingCallTest extends UnitTest {
-    private static final DateTime TEST_CREATED = new DateTime();
-    private static final DateTime TEST_UPDATED = new DateTime().plusDays(1);
-    private static final DateTime TEST_START = new DateTime().plusDays(2);
-    private static final DateTime TEST_END = new DateTime().plusDays(3);
+    private static final Date TEST_CREATED = new Date();
+    private static final Date TEST_UPDATED = new Date(new Date().getTime() + 1);
+    private static final Date TEST_START = new Date(new Date().getTime() + 2);
+    private static final Date TEST_END = new Date(new Date().getTime() + 3);
     private static final int TEST_DURATION = new Integer(10);
     private PlacedOutgoingCall placedCall;
 

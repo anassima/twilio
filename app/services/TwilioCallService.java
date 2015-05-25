@@ -18,7 +18,7 @@ import java.util.Map;
 
 public class TwilioCallService implements CallService {
     public static final String ACCOUNT_SID = "AC9ad35971981a487b60b7dc434f6fbbb8";
-    public static final String AUTH_TOKEN = "e75eaac9e7f77ed7b5f7e754cef57986";
+    public static final String AUTH_TOKEN = "b82d66a59824465281e7b2ee9566a382";
     private TwilioRestClient client;
 
     public TwilioCallService() {
