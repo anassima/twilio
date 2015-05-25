@@ -8,6 +8,7 @@ Steps so far:
 6. Added twilio-library dependency
 7. TDD then skeleton implementations (patterns: builder, translator, factory)
 8. Added hamcrest-library dependency for hasEntry()
+9. play dependencies --sync
 
 MIS
 
