@@ -30,7 +30,7 @@ we improve those services, we must ensure that calls continue to function reliab
 * TDD using JUnit, Hamcrest and Mockito. Unit and integration tests.
 * Tools: IDEA 14 (static code analysis) and Git
 * Play! Framework
-* Deployed to Heroku and Amazon RDS
+* Deployed to Heroku and Amazon RDS (varying success)
 * System components:
  * /builders: Builder pattern for constructing Twilio outbound call parameter map
  * /controllers: web view and associated function mapped to URL routes
@@ -74,12 +74,43 @@ Difficult to debug, runs locally, can't inspect database, can't use RDS. Extreme
 
 # Analysis
 
+We want to measure call reliability and quality at a granular level with thorough reporting options. 
+
+### Reliability
+
+1. Can we reach the Twilio API? 
+
+API failures (e.g. connectivity) should be logged (server log, database) and raise critical alerts (e.g. email, SMS). 
+
+If possible, additional redundancy through a fallback call provider could be considered (hence the decoupled architecture approach). 
+
+2. Was the call successful?
+
+Poll API or consume callbacks to retrieve the status of all placed calls for a given time period. 
+
+Data should be presented with many time period filters and display the percentage of completed (i.e. successful) calls. 
+
+Failure patterns need to be identified for patterns (e.g. time, to/from numbers, configuration) for potential fixes. 
+
+3. Can the Twilio API reach our callback endpoints?
+
+Provide a FallbackURL on a different server (e.g. different AWS AZ) with additional alerts to indicate a server outage. 
+
+### Quality
+
+1. Did the call drop out?
+2. Was the call placed in a timeley manner?
+3. How was the line quality?
+
+
 * Outbound call response
 * Get all outbound calls
 * Call transcript and recordings
 * Fallback URL? (post call)
 * API failure
 * statusCallback
+* Fallback URL
+* Polling or callback?
 
 ### Reliability
 
