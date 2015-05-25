@@ -48,11 +48,10 @@ we improve those services, we must ensure that calls continue to function reliab
 
 * Web application using Play! framework for rapid web application development
 * Use of factory, builder and translator patterns
-* For simplicity, API auth token and RDS information committed to Git (private repository)
 * 'Clean Code' principles (e.g. naming, only necessary code comments, DRY, SRP, small functions, avoid magic numbers...)
 * Use of CallService interface to decouple Twilio implementation and allow future flexibility and extensibility (i.e. swap out Twilio)
 * Integration test found at TwilioIntegrationTest
-* Persists data to a local H2 file system database
+* Persists data to a local H2 file system database (attempted AWS RDS)
 
 # Issues
 
@@ -126,5 +125,6 @@ Testing failures should be accomplished through invalid numbers and stress testi
 
 1. Install Play! 1.3.0 (http://downloads.typesafe.com/play/1.3.0/play-1.3.0.zip)
 2. Clone the GitHub repository
-3. In Terminal, navigate to the project directory and enter the command 'play run'
-4. Open the browser and navigate to 'http://localhost:9000'
+3. Update the constant AUTH_TOKEN in TwilioCallService.java with your API token
+4. In Terminal, navigate to the project directory and enter the command 'play run'
+5. Open the browser and navigate to 'http://localhost:9000'
