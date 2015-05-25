@@ -56,19 +56,21 @@ we improve those services, we must ensure that calls continue to function reliab
 
 # Issues
 
-* Attempted to use an AWS RDS instance as the database, but Heroku throws an exception starting up (permission debugging)
+Most issues revolved around deployment to Heroku from Play! framework, which can be fixed with more time.
+
+* Attempted to use an AWS RDS instance as the database, but Heroku throws a boot timeout exception
 * Web application previously running on Heroku, but change to model table name throws an exception (table not found). 
 Difficult to debug, runs locally, can't inspect database, can't use RDS. Extremely frustrating with limited time.
-* Attempted WAR deployment to Elastic Beanstalk (RDS permission issues)
-* Persisting JodaTime to database caused adapter issues
+* Attempted WAR deployment to Elastic Beanstalk, but throws a permission exception
 
 # Enhancements
 
 * Deploy to Heroku
 * Extract sensitive information (Twilio API token, RDS credentials) to local environment variables (or outside of Git)
-* Improved presentation (i.e. HTML5 framwwork, HAML, SASS)
 * Display the current job status (started, stopped) on the home page
-* 
+* Implement a callback web service for receiving notification from Twilio
+* Improved HTML5 presentation
+* Reports on reliability and quality
 
 # Analysis
 
@@ -78,7 +80,6 @@ Difficult to debug, runs locally, can't inspect database, can't use RDS. Extreme
 * Fallback URL? (post call)
 * API failure
 * statusCallback
-
 
 ### Reliability
 
