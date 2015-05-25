@@ -75,57 +75,52 @@ Difficult to debug, runs locally, can't inspect database, can't use RDS. Extreme
 # Analysis
 
 We want to measure call reliability and quality at a granular level with thorough reporting options. 
+All data should be persisted, reportable (both API and visually) with the ability to drill-down as needed. 
 
 ### Reliability
 
-1. Can we reach the Twilio API? 
+**Twilio API Uptime**
 
 API failures (e.g. connectivity) should be logged (server log, database) and raise critical alerts (e.g. email, SMS). 
-
 If possible, additional redundancy through a fallback call provider could be considered (hence the decoupled architecture approach). 
 
-2. Was the call successful?
+**Call Success**
 
 Poll API or consume callbacks to retrieve the status of all placed calls for a given time period. 
-
 Data should be presented with many time period filters and display the percentage of completed (i.e. successful) calls. 
-
 Failure patterns need to be identified for patterns (e.g. time, to/from numbers, configuration) for potential fixes. 
 
-3. Can the Twilio API reach our callback endpoints?
+**Callbacks**
 
 Provide a FallbackURL on a different server (e.g. different AWS AZ) with additional alerts to indicate a server outage. 
 
 ### Quality
 
-1. Did the call drop out?
-2. Was the call placed in a timeley manner?
-3. How was the line quality?
+**Dropouts**
 
+Report on placed calls with very low durations and repeated calls within a short timeframe (i.e. callback), which but 
+may indicate dropouts. These would need to be monitored and followed-up separately (e.g. contact customer for feedback).
 
-* Outbound call response
-* Get all outbound calls
-* Call transcript and recordings
-* Fallback URL? (post call)
-* API failure
-* statusCallback
-* Fallback URL
-* Polling or callback?
+**Latency**
 
-### Reliability
+Capture and persist the lifecyle of each call through callbacks. It is then possible to track the actual time between
+a call is queued and the call is queued, initiated and ringing (https://www.twilio.com/resources/images/docs/status-callback-events.png). 
+Reports on latency of each status and alerts if thresholds are exceeded.
 
-Reliability can be measured by successful calls placed.
+**Line Quality**
 
-### Quality
+Due to the subjective nature, implement the Feedback URL post-call to survey a user on quality. This could be integrated
+in a mobile or browser environment used to initiate calls. Data from the surveys should be persisted and reported against
+(quality score 1-5 and issues). 
 
-Quality can be measured by the time to connect a call and the line quality during. 
-
-statusCallbacks for latency at various stages, time between, success rates
-Run samples through batch process.
+Additionally (privacy nonwithstanding) a batch job could be created to retrieve random sample call transcripts and recordings -- 
+analysing them for quality and assigning a score to be reported on. Transcripts could be checked for spelling, recordings
+could be checked for noise.
 
 ### Testing
 
-Adjust timeout, recording call true/false, call numbers without permission (international)
+Adjustable parameters that may affect calls include timeout, recording TRUE/FALSE and answering machine recognition. 
+Testing failures should be accomplished through invalid numbers and stress testing.
 
 # How to Run
 
