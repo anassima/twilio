@@ -1,6 +1,8 @@
 # About
 
-Coding test for Mast Mobile. Took approximately 12 hours.
+Coding test for Mast Mobile. Took approximately 12 hours. 
+
+Screenshot: http://www.awesomescreenshot.com/image/260720/1ad30533de36d8eb38971c508aa56ec1
 
 # Rules
 
